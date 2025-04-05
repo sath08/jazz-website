@@ -1,6 +1,5 @@
 import React, { useState, useEffect, MouseEvent, KeyboardEvent } from "react";
 
-// Component doesn't accept any props
 const JazzCampaignWebsite: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -48,8 +47,294 @@ const JazzCampaignWebsite: React.FC = () => {
     }
   };
 
+  // Add effect to prevent scrolling when menu is open on mobile
+  useEffect(() => {
+    // Create a meta viewport tag to enforce proper scaling
+    const setViewportMeta = () => {
+      let meta = document.querySelector('meta[name="viewport"]');
+      if (!meta) {
+        meta = document.createElement("meta");
+        meta.setAttribute("name", "viewport");
+        document.head.appendChild(meta);
+      }
+      meta.setAttribute(
+        "content",
+        "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      );
+    };
+
+    setViewportMeta();
+
+    // Fix for the body overflow
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    // Add overflow hidden to prevent any horizontal scrolling
+    document.documentElement.style.overflowX = "hidden";
+    document.body.style.width = "100%";
+    document.body.style.maxWidth = "100vw";
+    document.body.style.overflowX = "hidden";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
+
   return (
-    <div className="jazz-campaign">
+    <div
+      className="jazz-campaign"
+      style={{
+        overflowX: "hidden",
+        width: "100%",
+        maxWidth: "100vw",
+        position: "relative",
+      }}
+    >
+      {/* Header */}
+      <header
+        className={isScrolled ? "scrolled" : ""}
+        style={{ width: "100%", maxWidth: "100vw" }}
+      >
+        <div className="container navbar">
+          <a href="#" className="logo">
+            Jazz for President
+          </a>
+          <ul className={`nav-menu ${isMenuOpen ? "active" : ""}`}>
+            <li className="nav-item">
+              <a
+                href="#strengths"
+                className="nav-link"
+                onClick={(e) => scrollToSection(e, "#strengths")}
+              >
+                Strengths
+              </a>
+            </li>
+            <li className="nav-item">
+              <a
+                href="#experience"
+                className="nav-link"
+                onClick={(e) => scrollToSection(e, "#experience")}
+              >
+                Experience
+              </a>
+            </li>
+            <li className="nav-item">
+              <a
+                href="#vision"
+                className="nav-link"
+                onClick={(e) => scrollToSection(e, "#vision")}
+              >
+                Vision
+              </a>
+            </li>
+          </ul>
+          <div
+            className={`hamburger ${isMenuOpen ? "active" : ""}`}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            onKeyDown={handleKeyDown}
+            aria-label="Toggle menu"
+            role="button"
+            tabIndex={0}
+          >
+            <span className="bar"></span>
+            <span className="bar"></span>
+            <span className="bar"></span>
+          </div>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section
+        className="hero"
+        id="home"
+        style={{ overflowX: "hidden", width: "100%", maxWidth: "100vw" }}
+      >
+        <div className="container">
+          <div className="hero-content">
+            <h1 className="hero-title">Jazz Singh</h1>
+            <p className="hero-tagline">
+              Leading with Resilience, Energy, and Teamwork
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Strengths Section */}
+      <section
+        id="strengths"
+        style={{ overflowX: "hidden", width: "100%", maxWidth: "100vw" }}
+      >
+        <div className="container">
+          <div className="section-title">
+            <h2>My Strengths</h2>
+          </div>
+          <div className="cards-container">
+            <div className="card">
+              <span className="card-icon" role="img" aria-label="Strength">
+                💪
+              </span>
+              <h3 className="card-title">Resilience</h3>
+              <p>
+                I embrace challenges and can bounce back to deliver effectively,
+                even when responsibilities become difficult.
+              </p>
+            </div>
+            <div className="card">
+              <span className="card-icon" role="img" aria-label="Rocket">
+                🚀
+              </span>
+              <h3 className="card-title">Drive for Excellence</h3>
+              <p>
+                I strive for perfection, ensuring both implicit and explicit
+                problems are worked toward being fixed in a timely manner.
+              </p>
+            </div>
+            <div className="card">
+              <span className="card-icon" role="img" aria-label="Team">
+                🤝
+              </span>
+              <h3 className="card-title">Teamwork</h3>
+              <p>
+                With experience in team sports like cricket, I excel at managing
+                people and working collaboratively towards a common goal.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section
+        id="experience"
+        className="timeline-section"
+        style={{ overflowX: "hidden", width: "100%", maxWidth: "100vw" }}
+      >
+        <div className="container">
+          <div className="section-title">
+            <h2>My Experience</h2>
+          </div>
+          <div className="cards-container">
+            <div className="card">
+              <span className="card-icon" role="img" aria-label="Chart">
+                📊
+              </span>
+              <h3 className="card-title">Clubs Coordinator</h3>
+              <p>
+                Gained invaluable ASB experience, learning communication skills
+                and understanding how ASB functions.
+              </p>
+            </div>
+            <div className="card">
+              <span className="card-icon" role="img" aria-label="Trophy">
+                🏆
+              </span>
+              <h3 className="card-title">FBLA Leadership</h3>
+              <p>
+                Served on the membership committee, developing planning and
+                organizational skills.
+              </p>
+            </div>
+            <div className="card">
+              <span className="card-icon" role="img" aria-label="Globe">
+                🌍
+              </span>
+              <h3 className="card-title">Cricket Team</h3>
+              <p>
+                Developed teamwork skills through five years of playing on the
+                state cricket team.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Vision Section */}
+      <section
+        id="vision"
+        style={{ overflowX: "hidden", width: "100%", maxWidth: "100vw" }}
+      >
+        <div className="container">
+          <div className="section-title">
+            <h2>My Vision & Plan</h2>
+          </div>
+          <div className="timeline">
+            <div className="timeline-item">
+              <h3>Increase Dance Participation</h3>
+              <p>
+                Boost student engagement at school dances to showcase our
+                school's well-rounded nature.
+              </p>
+            </div>
+
+            <div className="timeline-item">
+              <h3>Support Senior Fundraising</h3>
+              <p>
+                Help Senior Representatives raise funds for prom and ensure a
+                memorable final high school dance.
+              </p>
+            </div>
+
+            <div className="timeline-item">
+              <h3>Team Motivation</h3>
+              <p>
+                Implement monthly team hangouts to maintain high morale and
+                prevent stress among ASB members.
+              </p>
+            </div>
+
+            <div className="timeline-item">
+              <h3>Continuous Learning</h3>
+              <p>
+                Learn from the current President to maintain consistency and
+                quality of ASB work.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Profile Section */}
+      <section
+        className="profile-section"
+        style={{ overflowX: "hidden", width: "100%", maxWidth: "100vw" }}
+      >
+        <div className="container">
+          <div className="profile-card">
+            <img
+              src="/image/jizzy.png"
+              alt="Jazz Singh"
+              className="profile-img"
+            />
+            <h3 className="profile-name">JAZZ SINGH</h3>
+            <p className="profile-position">FOR ASB PRESIDENT</p>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section
+        className="cta-section"
+        style={{ overflowX: "hidden", width: "100%", maxWidth: "100vw" }}
+      >
+        <div className="container cta-content">
+          <h2 className="cta-title">Your Voice Matters</h2>
+          <p className="cta-text">
+            I am committed to representing the student body and ensuring that
+            our ASB truly reflects what students want.
+          </p>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer style={{ overflowX: "hidden", width: "100%", maxWidth: "100vw" }}>
+        <div className="container">
+          <p className="footer-text">© 2025 Jazz Singh for ASB President</p>
+        </div>
+      </footer>
+
       <style>{`
         /* Base styles */
         :root {
@@ -72,8 +357,8 @@ const JazzCampaignWebsite: React.FC = () => {
           scroll-behavior: smooth;
           font-size: 16px;
           width: 100%;
-          max-width: 100%;
-          overflow-x: hidden;
+          max-width: 100vw;
+          overflow-x: hidden !important;
         }
         
         body {
@@ -105,6 +390,7 @@ const JazzCampaignWebsite: React.FC = () => {
         section {
           padding: 60px 0;
           width: 100%;
+          overflow: hidden;
         }
         
         /* Typography */
@@ -247,6 +533,7 @@ const JazzCampaignWebsite: React.FC = () => {
           height: 600px;
           border-radius: 50%;
           background-color: rgba(255, 255, 255, 0.1);
+          z-index: 0;
         }
         
         .hero:after {
@@ -258,6 +545,7 @@ const JazzCampaignWebsite: React.FC = () => {
           height: 400px;
           border-radius: 50%;
           background-color: rgba(255, 255, 255, 0.1);
+          z-index: 0;
         }
         
         .hero-content {
@@ -425,6 +713,7 @@ const JazzCampaignWebsite: React.FC = () => {
         /* Profile Card */
         .profile-section {
           text-align: center;
+          overflow: hidden;
         }
         
         .profile-card {
@@ -448,6 +737,7 @@ const JazzCampaignWebsite: React.FC = () => {
           height: 200px;
           border-radius: 50%;
           background-color: rgba(255, 255, 255, 0.1);
+          z-index: 0;
         }
         
         .profile-card:after {
@@ -459,6 +749,7 @@ const JazzCampaignWebsite: React.FC = () => {
           height: 150px;
           border-radius: 50%;
           background-color: rgba(255, 255, 255, 0.1);
+          z-index: 0;
         }
         
         .profile-img {
@@ -505,6 +796,7 @@ const JazzCampaignWebsite: React.FC = () => {
           border-radius: 50%;
           top: -100px;
           left: -100px;
+          z-index: 0;
         }
         
         .cta-section:after {
@@ -516,6 +808,7 @@ const JazzCampaignWebsite: React.FC = () => {
           border-radius: 50%;
           bottom: -75px;
           right: -75px;
+          z-index: 0;
         }
         
         .cta-content {
@@ -768,224 +1061,20 @@ const JazzCampaignWebsite: React.FC = () => {
             max-width: 1320px;
           }
         }
+
+        /* Fix for the white strip issue */
+        #root {
+          overflow-x: hidden;
+          width: 100%;
+          max-width: 100vw;
+        }
+
+        .jazz-campaign {
+          overflow-x: hidden !important;
+          max-width: 100vw !important;
+          width: 100% !important;
+        }
       `}</style>
-
-      {/* Header */}
-      <header className={isScrolled ? "scrolled" : ""}>
-        <div className="container navbar">
-          <a href="#" className="logo">
-            Jazz for President
-          </a>
-          <ul className={`nav-menu ${isMenuOpen ? "active" : ""}`}>
-            <li className="nav-item">
-              <a
-                href="#strengths"
-                className="nav-link"
-                onClick={(e) => scrollToSection(e, "#strengths")}
-              >
-                Strengths
-              </a>
-            </li>
-            <li className="nav-item">
-              <a
-                href="#experience"
-                className="nav-link"
-                onClick={(e) => scrollToSection(e, "#experience")}
-              >
-                Experience
-              </a>
-            </li>
-            <li className="nav-item">
-              <a
-                href="#vision"
-                className="nav-link"
-                onClick={(e) => scrollToSection(e, "#vision")}
-              >
-                Vision
-              </a>
-            </li>
-          </ul>
-          <div
-            className={`hamburger ${isMenuOpen ? "active" : ""}`}
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            onKeyDown={handleKeyDown}
-            aria-label="Toggle menu"
-            role="button"
-            tabIndex={0}
-          >
-            <span className="bar"></span>
-            <span className="bar"></span>
-            <span className="bar"></span>
-          </div>
-        </div>
-      </header>
-
-      {/* Hero Section */}
-      <section className="hero" id="home">
-        <div className="container">
-          <div className="hero-content">
-            <h1 className="hero-title">Jazz Singh</h1>
-            <p className="hero-tagline">A voice for all Tesla STEM students.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Strengths Section */}
-      <section id="strengths">
-        <div className="container">
-          <div className="section-title">
-            <h2>My Strengths</h2>
-          </div>
-          <div className="cards-container">
-            <div className="card">
-              <span className="card-icon" role="img" aria-label="Strength">
-                💪
-              </span>
-              <h3 className="card-title">Communication</h3>
-              <p>
-                As an experienced debater and public speaker, I excel at clearly
-                communicating ideas and listening to diverse perspectives.
-              </p>
-            </div>
-            <div className="card">
-              <span className="card-icon" role="img" aria-label="Handshake">
-                🤝
-              </span>
-              <h3 className="card-title">Inclusivity</h3>
-              <p>
-                I believe every student deserves a voice. My approach ensures
-                all grades and student groups are represented in decisions.
-              </p>
-            </div>
-            <div className="card">
-              <span className="card-icon" role="img" aria-label="Rocket">
-                🚀
-              </span>
-              <h3 className="card-title">Innovation</h3>
-              <p>
-                I bring fresh ideas to old problems and am committed to
-                implementing practical solutions that enhance student life.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Experience Section */}
-      <section id="experience" className="timeline-section">
-        <div className="container">
-          <div className="section-title">
-            <h2>My Experience</h2>
-          </div>
-          <div className="cards-container">
-            <div className="card">
-              <span className="card-icon" role="img" aria-label="Chart">
-                📊
-              </span>
-              <h3 className="card-title">Class Officer</h3>
-              <p>
-                Served as Sophomore Class Representative, organizing class
-                events and representing student concerns.
-              </p>
-            </div>
-            <div className="card">
-              <span className="card-icon" role="img" aria-label="Trophy">
-                🏆
-              </span>
-              <h3 className="card-title">Club Leadership</h3>
-              <p>
-                Founded and led the Debate Club, growing membership by 40% and
-                organizing our first interschool competition.
-              </p>
-            </div>
-            <div className="card">
-              <span className="card-icon" role="img" aria-label="Globe">
-                🌍
-              </span>
-              <h3 className="card-title">Community Service</h3>
-              <p>
-                Led a volunteer team for community outreach, including
-                organizing a STEM workshop for middle school students.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Vision Section */}
-      <section id="vision">
-        <div className="container">
-          <div className="section-title">
-            <h2>My Vision & Plan</h2>
-          </div>
-          <div className="timeline">
-            <div className="timeline-item">
-              <h3>Inclusive Events</h3>
-              <p>
-                Create events that appeal to all interests and foster school
-                spirit across grades.
-              </p>
-            </div>
-
-            <div className="timeline-item">
-              <h3>Transparent Leadership</h3>
-              <p>
-                Implement regular town halls to ensure ASB decisions reflect
-                student priorities.
-              </p>
-            </div>
-
-            <div className="timeline-item">
-              <h3>Resource Accessibility</h3>
-              <p>
-                Advocate for equitable access to resources for all students.
-              </p>
-            </div>
-
-            <div className="timeline-item">
-              <h3>Student Advisory Board</h3>
-              <p>
-                Establish a cross-grade student advisory board to ensure diverse
-                input.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Profile Section */}
-      <section className="profile-section">
-        <div className="container">
-          <div className="profile-card">
-            <img
-              src="/api/placeholder/300/300"
-              alt="Jazz Singh"
-              className="profile-img"
-            />
-            <h3 className="profile-name">JAZZ SINGH</h3>
-            <p className="profile-position">FOR ASB PRESIDENT</p>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="cta-section">
-        <div className="container cta-content">
-          <h2 className="cta-title">Your Voice Matters</h2>
-          <p className="cta-text">
-            Together, we can build a stronger, more inclusive Tesla STEM
-            community. I'm committed to representing your voice and turning our
-            shared vision into reality.
-          </p>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer>
-        <div className="container">
-          <p className="footer-text">© 2025 Jazz Singh for ASB President</p>
-        </div>
-      </footer>
     </div>
   );
 };
