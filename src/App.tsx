@@ -38,30 +38,29 @@ const JazzCampaignWebsite = () => {
 
   return (
     <div className="jazz-campaign">
-      <style jsx>{`
+      <style>{`
         /* Base styles */
         :root {
-          --primary: #0353a4;
-          --secondary: #00b760;
-          --dark: #0d1b2a;
-          --light: #f5f5f5;
-          --accent: #ff5a5f;
-          --gray: #eef2f5;
+          --primary: #0353A4;
+          --secondary: #00B760;
+          --dark: #0D1B2A;
+          --light: #F5F5F5;
+          --accent: #FF5A5F;
+          --gray: #EEF2F5;
         }
-
+        
         * {
           margin: 0;
           padding: 0;
           box-sizing: border-box;
-          font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
-            Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         }
-
+        
         html {
           scroll-behavior: smooth;
           font-size: 16px;
         }
-
+        
         body {
           background-color: var(--light);
           color: var(--dark);
@@ -69,12 +68,12 @@ const JazzCampaignWebsite = () => {
           overflow-x: hidden;
           width: 100%;
         }
-
+        
         a {
           text-decoration: none;
           color: inherit;
         }
-
+        
         img {
           max-width: 100%;
           height: auto;
@@ -88,42 +87,39 @@ const JazzCampaignWebsite = () => {
           padding: 0 20px;
           position: relative;
         }
-
+        
         section {
           padding: 60px 0;
           width: 100%;
         }
-
+        
         /* Typography */
-        h1,
-        h2,
-        h3,
-        h4 {
+        h1, h2, h3, h4 {
           font-weight: 700;
           line-height: 1.2;
         }
-
+        
         h1 {
           font-size: 4rem;
           margin-bottom: 20px;
         }
-
+        
         h2 {
           font-size: 2.2rem;
           margin-bottom: 25px;
           position: relative;
           display: inline-block;
         }
-
+        
         h3 {
           font-size: 1.5rem;
           margin-bottom: 10px;
         }
-
+        
         p {
           margin-bottom: 15px;
         }
-
+        
         /* Header */
         header {
           position: fixed;
@@ -135,18 +131,18 @@ const JazzCampaignWebsite = () => {
           padding: 15px 0;
           background-color: transparent;
         }
-
+        
         header.scrolled {
           background-color: white;
           box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
         }
-
+        
         .navbar {
           display: flex;
           justify-content: space-between;
           align-items: center;
         }
-
+        
         .logo {
           font-weight: 800;
           font-size: 1.5rem;
@@ -154,20 +150,20 @@ const JazzCampaignWebsite = () => {
           transition: all 0.3s ease;
           white-space: nowrap;
         }
-
+        
         header.scrolled .logo {
           color: var(--primary);
         }
-
+        
         .nav-menu {
           display: flex;
           list-style: none;
         }
-
+        
         .nav-item {
           margin-left: 30px;
         }
-
+        
         .nav-link {
           color: white;
           font-weight: 600;
@@ -177,13 +173,13 @@ const JazzCampaignWebsite = () => {
           text-transform: uppercase;
           letter-spacing: 1px;
         }
-
+        
         header.scrolled .nav-link {
           color: var(--dark);
         }
-
+        
         .nav-link:after {
-          content: "";
+          content: '';
           position: absolute;
           bottom: -5px;
           left: 0;
@@ -192,18 +188,18 @@ const JazzCampaignWebsite = () => {
           background-color: var(--secondary);
           transition: width 0.3s ease;
         }
-
+        
         .nav-link:hover:after {
           width: 100%;
         }
-
+        
         /* Hamburger Menu */
         .hamburger {
           display: none;
           cursor: pointer;
           z-index: 1001;
         }
-
+        
         .bar {
           display: block;
           width: 25px;
@@ -212,28 +208,24 @@ const JazzCampaignWebsite = () => {
           transition: all 0.3s ease;
           background-color: white;
         }
-
+        
         header.scrolled .bar {
           background-color: var(--dark);
         }
-
+        
         /* Hero Section */
         .hero {
           height: 100vh;
           min-height: 500px;
-          background: linear-gradient(
-            to bottom,
-            rgba(3, 83, 164, 1),
-            rgba(0, 183, 96, 1)
-          );
+          background: linear-gradient(to bottom, rgba(3, 83, 164, 1), rgba(0, 183, 96, 1));
           display: flex;
           align-items: center;
           position: relative;
           overflow: hidden;
         }
-
+        
         .hero:before {
-          content: "";
+          content: '';
           position: absolute;
           right: -150px;
           bottom: -150px;
@@ -242,9 +234,9 @@ const JazzCampaignWebsite = () => {
           border-radius: 50%;
           background-color: rgba(255, 255, 255, 0.1);
         }
-
+        
         .hero:after {
-          content: "";
+          content: '';
           position: absolute;
           left: -100px;
           top: -100px;
@@ -253,7 +245,7 @@ const JazzCampaignWebsite = () => {
           border-radius: 50%;
           background-color: rgba(255, 255, 255, 0.1);
         }
-
+        
         .hero-content {
           color: white;
           position: relative;
@@ -262,33 +254,33 @@ const JazzCampaignWebsite = () => {
           text-align: center;
           margin: 0 auto;
         }
-
+        
         .hero-title {
           font-size: 5rem;
           line-height: 1.1;
           margin-bottom: 20px;
           text-transform: uppercase;
         }
-
+        
         .hero-tagline {
           font-size: 1.5rem;
           opacity: 0.9;
           max-width: 600px;
           margin: 0 auto;
         }
-
+        
         /* Section styles */
         .section-title {
           text-align: center;
           margin-bottom: 40px;
         }
-
+        
         .section-title h2 {
           color: var(--primary);
         }
-
+        
         .section-title h2:after {
-          content: "";
+          content: '';
           position: absolute;
           bottom: -10px;
           left: 50%;
@@ -298,14 +290,14 @@ const JazzCampaignWebsite = () => {
           background: var(--secondary);
           border-radius: 2px;
         }
-
+        
         /* Cards */
         .cards-container {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
           gap: 20px;
         }
-
+        
         .card {
           background-color: white;
           border-radius: 10px;
@@ -313,32 +305,32 @@ const JazzCampaignWebsite = () => {
           box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
           transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
+        
         .card:hover {
           transform: translateY(-5px);
           box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
-
+        
         .card-icon {
           font-size: 1.8rem;
           color: var(--primary);
           margin-bottom: 10px;
           display: inline-block;
         }
-
+        
         .card-title {
           font-size: 1.3rem;
           margin-bottom: 10px;
           color: var(--primary);
         }
-
+        
         /* Timeline */
         .timeline-section {
           background-color: var(--gray);
           position: relative;
           overflow: hidden;
         }
-
+        
         .timeline {
           position: relative;
           max-width: 800px;
@@ -348,9 +340,9 @@ const JazzCampaignWebsite = () => {
           gap: 30px 50px;
           padding: 20px 0;
         }
-
+        
         .timeline:before {
-          content: "";
+          content: '';
           position: absolute;
           top: 0;
           left: 50%;
@@ -360,7 +352,7 @@ const JazzCampaignWebsite = () => {
           transform: translateX(-50%);
           z-index: 1;
         }
-
+        
         .timeline-item {
           background-color: white;
           border-radius: 10px;
@@ -369,30 +361,30 @@ const JazzCampaignWebsite = () => {
           position: relative;
           z-index: 2;
         }
-
+        
         .timeline-item:hover {
           box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
-
+        
         .timeline-item:before {
-          content: "";
+          content: '';
           position: absolute;
           top: 30px;
           width: 20px;
           height: 3px;
           background: var(--primary);
         }
-
+        
         .timeline-item:nth-child(odd):before {
           right: -35px;
         }
-
+        
         .timeline-item:nth-child(even):before {
           left: -35px;
         }
-
+        
         .timeline-item:after {
-          content: "";
+          content: '';
           position: absolute;
           top: 25px;
           width: 13px;
@@ -402,25 +394,25 @@ const JazzCampaignWebsite = () => {
           border: 3px solid var(--primary);
           z-index: 3;
         }
-
+        
         .timeline-item:nth-child(odd):after {
           right: -42px;
         }
-
+        
         .timeline-item:nth-child(even):after {
           left: -42px;
         }
-
+        
         .timeline-item h3 {
           color: var(--primary);
           margin-bottom: 10px;
         }
-
+        
         /* Profile Card */
         .profile-section {
           text-align: center;
         }
-
+        
         .profile-card {
           background: linear-gradient(135deg, var(--primary), var(--secondary));
           border-radius: 15px;
@@ -432,9 +424,9 @@ const JazzCampaignWebsite = () => {
           position: relative;
           overflow: hidden;
         }
-
+        
         .profile-card:before {
-          content: "";
+          content: '';
           position: absolute;
           top: -50px;
           left: -50px;
@@ -443,9 +435,9 @@ const JazzCampaignWebsite = () => {
           border-radius: 50%;
           background-color: rgba(255, 255, 255, 0.1);
         }
-
+        
         .profile-card:after {
-          content: "";
+          content: '';
           position: absolute;
           bottom: -50px;
           right: -50px;
@@ -454,7 +446,7 @@ const JazzCampaignWebsite = () => {
           border-radius: 50%;
           background-color: rgba(255, 255, 255, 0.1);
         }
-
+        
         .profile-img {
           width: 150px;
           height: 150px;
@@ -465,37 +457,33 @@ const JazzCampaignWebsite = () => {
           z-index: 1;
           object-fit: cover;
         }
-
+        
         .profile-name {
           font-size: 2rem;
           margin-bottom: 10px;
           position: relative;
           z-index: 1;
         }
-
+        
         .profile-position {
           font-size: 1.2rem;
           opacity: 0.9;
           position: relative;
           z-index: 1;
         }
-
+        
         /* CTA Section */
         .cta-section {
-          background: linear-gradient(
-            to right,
-            var(--primary),
-            var(--secondary)
-          );
+          background: linear-gradient(to right, var(--primary), var(--secondary));
           color: white;
           text-align: center;
           padding: 60px 0;
           position: relative;
           overflow: hidden;
         }
-
+        
         .cta-section:before {
-          content: "";
+          content: '';
           position: absolute;
           width: 200px;
           height: 200px;
@@ -504,9 +492,9 @@ const JazzCampaignWebsite = () => {
           top: -100px;
           left: -100px;
         }
-
+        
         .cta-section:after {
-          content: "";
+          content: '';
           position: absolute;
           width: 150px;
           height: 150px;
@@ -515,37 +503,37 @@ const JazzCampaignWebsite = () => {
           bottom: -75px;
           right: -75px;
         }
-
+        
         .cta-content {
           position: relative;
           z-index: 1;
           max-width: 700px;
           margin: 0 auto;
         }
-
+        
         .cta-title {
           font-size: 2.5rem;
           margin-bottom: 15px;
         }
-
+        
         .cta-text {
           font-size: 1.2rem;
           margin-bottom: 0;
           opacity: 0.9;
         }
-
+        
         /* Footer */
         footer {
           background-color: white;
           padding: 30px 0;
           text-align: center;
         }
-
+        
         .footer-text {
           color: #666;
           font-size: 0.9rem;
         }
-
+        
         /* Responsive Styles */
         @media (max-width: 1200px) {
           .container {
@@ -557,81 +545,81 @@ const JazzCampaignWebsite = () => {
           html {
             font-size: 15px;
           }
-
+          
           h1 {
             font-size: 3.5rem;
           }
-
+          
           .hero-title {
             font-size: 3.5rem;
           }
-
+          
           .hero {
             min-height: 450px;
           }
-
+          
           .cards-container {
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
           }
-
+          
           .timeline {
             grid-template-columns: 1fr;
             max-width: 500px;
           }
-
+          
           .timeline:before {
             left: 25px;
           }
-
+          
           .timeline-item {
             width: calc(100% - 50px);
             margin-left: 50px;
           }
-
+          
           .timeline-item:before {
             left: -35px !important;
             right: auto !important;
           }
-
+          
           .timeline-item:after {
             left: -42px !important;
             right: auto !important;
           }
         }
-
+        
         @media (max-width: 768px) {
           html {
             font-size: 14px;
           }
-
+          
           section {
             padding: 40px 0;
           }
-
+          
           h1 {
             font-size: 3rem;
           }
-
+          
           h2 {
             font-size: 2rem;
           }
-
+          
           .hamburger {
             display: block;
           }
-
+          
           .hamburger.active .bar:nth-child(2) {
             opacity: 0;
           }
-
+          
           .hamburger.active .bar:nth-child(1) {
             transform: translateY(8px) rotate(45deg);
           }
-
+          
           .hamburger.active .bar:nth-child(3) {
             transform: translateY(-8px) rotate(-45deg);
           }
-
+          
           .nav-menu {
             position: fixed;
             left: -100%;
@@ -644,32 +632,32 @@ const JazzCampaignWebsite = () => {
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             padding: 20px 0;
           }
-
+          
           .nav-menu.active {
             left: 0;
           }
-
+          
           .nav-item {
             margin: 15px 0;
           }
-
+          
           .nav-link {
             color: var(--dark);
           }
-
+          
           .hero-content {
             text-align: center;
             padding: 0 20px;
           }
-
+          
           .hero-title {
             font-size: 2.8rem;
           }
-
+          
           .profile-card {
             padding: 30px 20px;
           }
-
+          
           .cta-title {
             font-size: 2rem;
           }
@@ -684,44 +672,44 @@ const JazzCampaignWebsite = () => {
           html {
             font-size: 13px;
           }
-
+          
           h1 {
             font-size: 2.5rem;
           }
-
+          
           .hero-title {
             font-size: 2.2rem;
           }
-
+          
           .hero-tagline {
             font-size: 1.2rem;
           }
-
+          
           .container {
             padding: 0 15px;
           }
-
+          
           .card {
             padding: 20px 15px;
           }
-
+          
           .profile-card {
             padding: 25px 15px;
           }
-
+          
           .profile-img {
             width: 100px;
             height: 100px;
           }
-
+          
           .section-title h2 {
             font-size: 1.8rem;
           }
-
+          
           .cta-title {
             font-size: 1.8rem;
           }
-
+          
           .cta-text {
             font-size: 1rem;
           }
@@ -732,7 +720,7 @@ const JazzCampaignWebsite = () => {
           .hero-title {
             font-size: 2rem;
           }
-
+          
           .logo {
             font-size: 1.2rem;
           }
@@ -745,11 +733,11 @@ const JazzCampaignWebsite = () => {
             min-height: 400px;
             padding: 100px 0 50px;
           }
-
+          
           .hero-title {
             font-size: 2.5rem;
           }
-
+          
           .profile-img {
             width: 80px;
             height: 80px;
@@ -761,7 +749,7 @@ const JazzCampaignWebsite = () => {
           html {
             font-size: 18px;
           }
-
+          
           .container {
             max-width: 1320px;
           }
