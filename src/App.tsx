@@ -68,17 +68,19 @@ const JazzCampaignWebsite: React.FC = () => {
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         }
         
-        html {
+        html, body {
           scroll-behavior: smooth;
           font-size: 16px;
+          width: 100%;
+          max-width: 100%;
+          overflow-x: hidden;
         }
         
         body {
           background-color: var(--light);
           color: var(--dark);
           line-height: 1.6;
-          overflow-x: hidden;
-          width: 100%;
+          position: relative;
         }
         
         a {
