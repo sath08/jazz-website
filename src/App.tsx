@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, MouseEvent, KeyboardEvent } from "react";
 
-const JazzCampaignWebsite = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+// Component doesn't accept any props
+const JazzCampaignWebsite: React.FC = () => {
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   // Handle scroll events
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScroll = (): void => {
       setIsScrolled(window.scrollY > 0);
     };
 
@@ -17,7 +18,10 @@ const JazzCampaignWebsite = () => {
   }, []);
 
   // Handle smooth scrolling
-  const scrollToSection = (e, sectionId) => {
+  const scrollToSection = (
+    e: MouseEvent<HTMLAnchorElement>,
+    sectionId: string
+  ): void => {
     e.preventDefault();
     setIsMenuOpen(false);
 
@@ -28,12 +32,20 @@ const JazzCampaignWebsite = () => {
 
     const headerOffset = 80;
     const elementPosition = element.getBoundingClientRect().top;
-    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+    const offsetPosition = elementPosition + window.scrollY - headerOffset;
 
     window.scrollTo({
       top: offsetPosition,
       behavior: "smooth",
     });
+  };
+
+  // Handle keyboard interaction for hamburger menu
+  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>): void => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      setIsMenuOpen(!isMenuOpen);
+    }
   };
 
   return (
@@ -794,9 +806,10 @@ const JazzCampaignWebsite = () => {
           <div
             className={`hamburger ${isMenuOpen ? "active" : ""}`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            onKeyDown={handleKeyDown}
             aria-label="Toggle menu"
             role="button"
-            tabIndex="0"
+            tabIndex={0}
           >
             <span className="bar"></span>
             <span className="bar"></span>
