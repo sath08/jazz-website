@@ -469,7 +469,7 @@ Execution: Implement hangouts for the ASB team at least once a month so that the
           </div>
 
           <div className="impact-section">
-            <h3 className="impact-header">Some Single Image Section</h3>
+            <h3 className="impact-header">Club Registration</h3>
             <div className="single-image-collage">
               <div className="collage-item">
                 <img src="/image/clubs.png" alt="Single Image Description" />
