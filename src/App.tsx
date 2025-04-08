@@ -390,7 +390,8 @@ Execution: Implement hangouts for the ASB team at least once a month so that the
               <h3>Team Motivation</h3>
               <p>
                 Implement monthly team hangouts to maintain high morale and
-                prevent stress among ASB members.
+                prevent stress among ASB members to ultimately drive higher
+                work quality.
               </p>
             </div>
 
