@@ -379,10 +379,10 @@ Execution: Implement hangouts for the ASB team at least once a month so that the
             </div>
 
             <div className="timeline-item">
-              <h3>Support Senior Fundraising</h3>
+              <h3>Support Fundraising</h3>
               <p>
-                Help Senior Representatives raise funds for prom and ensure a
-                memorable final high school dance.
+                Help each grade representative raise funds for prom and
+                ensure a memorable final high school dance.
               </p>
             </div>
 
